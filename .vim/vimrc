@@ -1,0 +1,237 @@
+" Andrii Charnosh configuration
+
+" Basics {{{
+set clipboard=autoselectplus,autoselect,unnamedplus,unnamed
+set nocompatible		" VIM використовувати всю силу vim-a
+filetype plugin indent on	" Розпізнавати типи фалів
+
+set autoread			" Перечитувати файл який редагується (можливо паралельно редагується у іншому редакторі)
+set encoding=utf-8		" Encode characters as utf-8
+set termencoding=utf-8		" Encoding for the treminal
+set fileencoding=utf-8		" Encode files as utf-8
+set keymap=ukrainian-jcuken	" Встановити Українську розкладку клавіатури (перемикається кобінацією CTRL-^
+set iminsert=0			" Для того щоб по-замовчуванню була латиниця
+set imsearch=0			" Для того щоб по-замовчуванню була латиниця
+set updatetime=100              " Частота оновлення (також частота оновлення змін в git для GitGutter plugin)
+highlight lCursor guifg=NONE guibg=Cyan
+
+set foldlevelstart=0		" Open files with all folds collapsed
+set foldmethod=marker		" Fold based on specified markers (marker,syntax,manual)
+set hidden			" Hide buffers instead of closing them
+set history=1000		" Remember command mode history
+set ignorecase			" Ignore case of regexes
+set smartcase			" Override ignorecase if an uppercase is typed
+set lazyredraw			" For better performance when replaying macros
+set showbreak=↵			" символ переносу стрічки якщо не поміщається
+set splitbelow			" відкривати нове вікно знизу при горизонтальному розбитті
+set splitright			" відкривати нове вікно зправа при вертикальному розбитті
+set wildmenu			" Show a menu of completions like zsh
+set wildmode=list:longest	" Set the order of completion
+set laststatus=2		" Show status line: 0: never, 1: only if there are at least two windows, 2: always
+"set spell
+set spelllang=en_us,uk_ua	"
+
+"set nobackup			" Turn off file backup
+"set noswapfile			" Turn off swap file generation
+"set nowritebackup		" Write the buffer straight to the original file
+"set incsearch			" Enable incremental search
+"set gdefault			" Default to substituting globally
+
+"let g:netrw_localrmdir='rm -r'	" Allow the deletion of a dir that isn't empty
+"set g:netrw_banner=0		" Don't show the banner
+
+" }}}
+" Plugins {{{
+if has("unix")
+    set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
+    call vundle#begin()
+else
+     if has("win32")
+	set rtp+=$USERPROFILE\.vim\bundle\Vundle.vim\
+	call vundle#begin('$USERPROFILE\.vim\bundle\')
+     endif
+endif
+" let Vundle manage Vundle, required
+"Plugin 'lewis6991/gitsigns.nvim'
+"Plugin 'tpope/vim-speeddating'     " <ctrl-a/x> for dates insertion
+"Plugin 'mcchrish/nnn.vim' " nnn as file picker'
+"Plugin 'rbtnn/vim-pterm' " nnn popup
+"Plugin 'doums/nnnvi' " nnn as file picker
+"Plugin 'doums/oterm' " nnn (terminal)
+"Plugin 'https://github.com/airblade/vim-gitgutter.git' " View changes at left side (+, ~, -)
+"Plugin 'christoomey/vim-system-copy'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'derekprior/vim-trimmer'    " trim trailing whitespece on buffer write
+Plugin 'tpope/vim-surround'        " Changer surrounding inside: cs"'; ccs'<q> ; ysiw] ; yss] ; yssb
+Plugin 'tpope/vim-repeat'	   " support . command for vim-suround
+Plugin 'godlygeek/tabular'         " Tabularize /search patternt
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline_theme='zenburn'
+"Git
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-fugitive'	    " Gti (:Gedit :Gsplit :Gvsplit :Gtabedit :Gdiff :Gstatus :Glog :Gblame ...)
+Plugin 'shumphrey/fugitive-gitlab.vim' "fugitive for gitlab
+Plugin 'aquach/vim-mediawiki-editor' " Media wiki edit (MWRead,...)
+Plugin 'suan/vim-instant-markdown' " перегляд md-файлів у браузері
+Plugin 'vimwiki/vimwiki'           " vimwiki organize
+Plugin 'andrewstuart/vim-kubernetes' " This package provides kubernetes YAML snippets
+Plugin 'voldikss/vim-translator'     " Multiple engines translator
+Plugin 'SirVer/ultisnips' " Track the engine.
+Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them
+Plugin 'vifm/vifm.vim' " vifm as file picker
+Plugin 'ryanoasis/vim-devicons' "Icons https://github.com/ryanoasis/vim-devicons
+Plugin 'editorconfig/editorconfig-vim' " Uses .editorconfig to maintain consistent coding styles https://editorconfig.org/
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'mg979/vim-visual-multi', {'branch': 'master'}
+Plugin 'tpope/vim-commentary'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'hashivim/vim-terraform'
+call vundle#end()
+
+"{{{ Plugins configuration
+"SirVer/ultisnips Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" vimwiki
+let g:vimwiki_list = [{},{'path': '~/MY/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let wiki = {}
+let wiki.path = 'vimwiki'
+let wiki.nested_syntaxes = {'sh': 'shell', 'python': 'python', 'c++': 'cpp', 'conf': 'conf'}
+"let g:vimwiki_list = [wiki]
+" shumphrey/fugitive-gitlab.vim
+let g:fugitive_gitlab_domains = ['https://portal-ua.globallogic.com/gitlab']
+let g:gitlab_api_keys = {'portal-ua.globallogic.com': 'ZpnRZzBKu5GyZaSxEzm_'}
+let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
+"vim-translator
+let g:translator_target_lan = 'uk'
+let g:translator_source_lan = 'en'
+let g:translator_default_engines = ['google']
+let g:translator_window_type = 'preview'
+" }}}
+
+" Tabs, spaces {{{
+set backspace=indent,eol,start			" Backspacing in insert mode
+if has("unix")
+    set nolist listchars=tab:⇒➛,trail:⋅,nbsp:⋅|	" Display extra whitespace
+endif
+set lcs+=space:·			" Space
+set listchars=tab:⇒➛,trail:⋅,nbsp:⋅|	" Display extra whitespace
+set nojoinspaces				" Avoid double spaces when joining lines
+set shiftwidth=4				" Tab size (autoindent)
+set softtabstop=4				" Tab size (tab key)
+"set textwidth=80
+"set wrap
+" }}}
+" Files and paths {{{
+" let &path.="src/include,/usr/include, /home/acharnosh/MY/dotfiles/"
+let &path="/home/andrii/GL/"
+set path+=**,
+set wildignore+=*.o,*.obj,*.a,*.so
+set wildignore+=*.pro.user,*.pri,*.qrc,*.qdoc,*.stash,*.ui
+set wildignore+=*.png,.jpeg,.zip,.gz,.gzip
+let g:instant_markdown_autostart = 0
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+" }}}
+" Visuals {{{
+syntax on		" Enable syntax highlighting
+set background=dark	" Tell vim the style being used
+set hlsearch		" Highlighting all searches
+set cursorline		" Highlighting cursor line
+set number		" Show line numbers
+" set relativenumber	" Make line numbers relative to cursor
+set ruler		" Always show the cursor position
+set t_Co=256		" Use 256 colours
+colorscheme gruvbox	" Set the colorsheme
+
+if has("win32")
+    set guifont=Courier\ New
+endif
+"}}}
+" Mappings {{{
+map <leader>md :InstantMarkdownPreview<cr>
+map <C-H> :wincmd h<cr>
+map <C-J> :wincmd j<cr>
+map <C-K> :wincmd k<cr>
+map <C-L> :wincmd l<cr>
+
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
+" Скорочення в командній стрічці так як у BASH
+:cnoremap <C-A> <Home>
+:cnoremap <C-F> <Right>
+:cnoremap <C-B> <Left>
+:cnoremap <Esc>b <S-Left>
+:cnoremap <Esc>f <S-Right>
+
+"Translation mapping
+vmap <leader>tr :TranslateR<cr>
+vmap <leader>tx :TranslateX<cr>
+vmap <leader>tw :TranslateW<cr>
+nmap <leader>tr :TranslateR<cr>
+nmap <leader>tx :TranslateX<cr>
+nmap <leader>tw :TranslateW<cr>
+
+"GitGutter
+vmap <leader>gn :GitGutterNextHunk<cr>
+vmap <leader>gp :GitGutterPrevHunk<cr>
+vmap <leader>gl :GitGutterLineHighlightsToggle<cr>
+vmap <leader>gL :GitGutterLineNrHighlightsToggle<cr>
+
+nmap <leader>gn :GitGutterNextHunk<cr>
+nmap <leader>gp :GitGutterPrevHunk<cr>
+nmap <leader>gl :GitGutterLineHighlightsToggle<cr>
+nmap <leader>gL :GitGutterLineNrHighlightsToggle<cr>
+
+"Git vim-fugitive
+nmap <leader>gp :Git pull<cr>
+nmap <leader>gs :Git status<cr>
+nmap <leader>ga :Git add .<cr>
+nmap <leader>gA :Git add *<cr>
+nmap <leader>gc :Git commit<cr>
+nmap <leader>gP :Git push<cr>
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
+"Vifm
+nmap <leader>ff :leftabove vertical 60Vifm<cr>
+nmap <leader>fv :leftabove vertical 60VsplitVifm<cr>
+nmap <leader>fh :leftabove vertical 60SplitVifm<cr>
+"select file/files and open in new tab/tabs
+nmap <leader>ft :leftabove vertical 60TabVifm<cr>
+"select a file or files to compare to the current file with :vert diffsplit
+nmap <leader>fd :leftabove vertical 60DiffVifm<cr>
+"let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+let g:vifm_replace_netrw = 1
+let g:vifm_embed_split = 1
+let g:vifm_embed_term = 1
+let g:vifm_exec_args = '-c ":wincmd o"'
+let g:vifm_embed_cwd = 1
+
+" }}}
+" Augroup {{{
+"augroup Vimrc
+"    au!
+"
+"    " вирівняти вікна якщо Vim змінив розмір
+"    au VimResized * :wincmd =
+"augroup END
+
+augroup set_jenkins_groovy
+au!
+au BufNewFile,BufRead *.jenkinsfile,*.Jenkinsfile,Jenkinsfile,jenkinsfile setf groovy
+augroup END
+
+" }}}
