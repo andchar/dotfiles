@@ -16,6 +16,7 @@ export GREP_COLOR='37;45'
 #export GREP_OPTIONS='--color=auto'
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PAGER=less
+export PATH=$PATH:/usr/local/go/bin
 
 #source ~/.autojump/etc/profile.d/autojump.zsh
 #. /opt/r15b02/activate
@@ -264,12 +265,7 @@ case `uname` in
   Linux)
     ###comletion linux
     #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/share/kubectl/completion.zsh
-    source /usr/share/kubectl/oc.zsh
-    source /usr/share/kubectl/crc.zsh
-    source /usr/share/kubectl/docker.zsh
-    #source /usr/share/google-cloud-sdk/completion.zsh.inc
-    #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ~/.zsh_completion/*
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
   ;;
@@ -310,4 +306,9 @@ function jwt() {
   done
 }
 
-source /home/andrii/.config/broot/launcher/bash/br
+source /home/${USER}/.config/broot/launcher/bash/br
+
+# >>>> Vagrant command completion (start)
+fpath=(/usr/lib/vagrant/gems/vagrant-2.3.6/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)
