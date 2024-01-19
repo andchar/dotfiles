@@ -31,6 +31,11 @@ set laststatus=2		" Show status line: 0: never, 1: only if there are at least tw
 "set spell
 set spelllang=en_us,uk_ua	"
 
+" Show hidden characters
+" https://askubuntu.com/questions/74485/how-to-display-hidden-characters-in-vim
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:$,precedes:«,extends:»
+" set list
+
 "set nobackup			" Turn off file backup
 "set noswapfile			" Turn off swap file generation
 "set nowritebackup		" Write the buffer straight to the original file
@@ -112,19 +117,22 @@ let g:fugitive_gitlab_domains = ['https://portal-ua.globallogic.com/gitlab']
 let g:gitlab_api_keys = {'portal-ua.globallogic.com': 'ZpnRZzBKu5GyZaSxEzm_'}
 let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
 "vim-translator
-let g:translator_target_lan = 'uk'
-let g:translator_source_lan = 'en'
-let g:translator_default_engines = ['google']
+" let g:translator_source_lan = 'en'
+let g:translator_source_lan = 'auto'
+let g:translator_target_lan = 'uk_ua'
+" let g:translator_default_engines = ['google']
+let g:translator_default_engines = ['trans']
 let g:translator_window_type = 'preview'
 " }}}
 
 " Tabs, spaces {{{
 set backspace=indent,eol,start			" Backspacing in insert mode
-if has("unix")
-    set nolist listchars=tab:⇒➛,trail:⋅,nbsp:⋅|	" Display extra whitespace
-endif
+" if has("unix")
+"     set nolist listchars=tab:⇒➛,trail:⋅,nbsp:⋅|	" Display extra whitespace
+" endif
 set lcs+=space:·			" Space
-set listchars=tab:⇒➛,trail:⋅,nbsp:⋅|	" Display extra whitespace
+" set listchars=tab:⇒➛,trail:⋅,nbsp:⋅|	" Display extra whitespace
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:$,precedes:«,extends:»
 set nojoinspaces				" Avoid double spaces when joining lines
 set shiftwidth=4				" Tab size (autoindent)
 set softtabstop=4				" Tab size (tab key)

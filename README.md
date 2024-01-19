@@ -17,7 +17,7 @@ cd ~/.vim/bundle/coc.nvim && yarn install && cd -
 ## TrackPoing:
 # List
 xinput list | grep -i trackpoint
-xinput list-props 15 # TRACKPOINT_ID
+xinput list-props 10 # TRACKPOINT_ID
 # Trackpoint acceleration:
 xinput --set-prop 'TPPS/2 IBM TrackPoint' "libinput Accel Speed" 1
 #Permanent settings:
