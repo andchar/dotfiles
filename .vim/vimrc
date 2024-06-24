@@ -113,8 +113,8 @@ let wiki.path = 'vimwiki'
 let wiki.nested_syntaxes = {'sh': 'shell', 'python': 'python', 'c++': 'cpp', 'conf': 'conf'}
 "let g:vimwiki_list = [wiki]
 " shumphrey/fugitive-gitlab.vim
-let g:fugitive_gitlab_domains = ['https://portal-ua.globallogic.com/gitlab']
-let g:gitlab_api_keys = {'portal-ua.globallogic.com': 'ZpnRZzBKu5GyZaSxEzm_'}
+let g:fugitive_gitlab_domains = ['']
+let g:gitlab_api_keys = {''}
 let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
 "vim-translator
 " let g:translator_source_lan = 'en'
