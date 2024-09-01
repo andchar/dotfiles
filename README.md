@@ -32,3 +32,8 @@ EndSection
 ```
 #slim login themes:
 https://github.com/adi1090x/slim_themes.git
+
+# Thinkpad fix laptop lid wake up:
+sudo vim /etc/default/grub
+# add 'acpi_sleep=nonvs' parameter to GRUB_CMDLINE_LINUX_DEFAULT like so:
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 acpi_sleep=nonvs"
