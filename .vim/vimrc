@@ -45,6 +45,9 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:$,precedes:«,extends:»
 "let g:netrw_localrmdir='rm -r'	" Allow the deletion of a dir that isn't empty
 "set g:netrw_banner=0		" Don't show the banner
 
+" Reopen the last edited position in files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 " }}}
 " Plugins {{{
 if has("unix")
@@ -76,7 +79,6 @@ let g:airline_theme='zenburn'
 "Git
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-fugitive'	    " Gti (:Gedit :Gsplit :Gvsplit :Gtabedit :Gdiff :Gstatus :Glog :Gblame ...)
-Plugin 'shumphrey/fugitive-gitlab.vim' "fugitive for gitlab
 Plugin 'aquach/vim-mediawiki-editor' " Media wiki edit (MWRead,...)
 Plugin 'suan/vim-instant-markdown' " перегляд md-файлів у браузері
 Plugin 'vimwiki/vimwiki'           " vimwiki organize
@@ -113,8 +115,6 @@ let wiki.path = 'vimwiki'
 let wiki.nested_syntaxes = {'sh': 'shell', 'python': 'python', 'c++': 'cpp', 'conf': 'conf'}
 "let g:vimwiki_list = [wiki]
 " shumphrey/fugitive-gitlab.vim
-let g:fugitive_gitlab_domains = ['']
-let g:gitlab_api_keys = {''}
 let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
 "vim-translator
 " let g:translator_source_lan = 'en'
@@ -158,7 +158,18 @@ set number		" Show line numbers
 " set relativenumber	" Make line numbers relative to cursor
 set ruler		" Always show the cursor position
 set t_Co=256		" Use 256 colours
-colorscheme gruvbox	" Set the colorsheme
+" Define colorschemes for localhost and SSH clients (for e-ink devices light
+" schemes more readable)
+if exists("$SSH_CONNECTION")
+    " Get the SSH connection details
+    " let ssh_connection = $SSH_CONNECTION
+    " Extract the client IP address (first part of SSH_CONNECTION)
+    " let client_ip = split(ssh_connection)[0]
+    " if client_ip == "192.168.1.92"
+    colorscheme shine
+else
+    colorscheme gruvbox
+endif
 
 if has("win32")
     set guifont=Courier\ New
@@ -188,17 +199,6 @@ nmap <leader>tr :TranslateR<cr>
 nmap <leader>tx :TranslateX<cr>
 nmap <leader>tw :TranslateW<cr>
 
-"GitGutter
-vmap <leader>gn :GitGutterNextHunk<cr>
-vmap <leader>gp :GitGutterPrevHunk<cr>
-vmap <leader>gl :GitGutterLineHighlightsToggle<cr>
-vmap <leader>gL :GitGutterLineNrHighlightsToggle<cr>
-
-nmap <leader>gn :GitGutterNextHunk<cr>
-nmap <leader>gp :GitGutterPrevHunk<cr>
-nmap <leader>gl :GitGutterLineHighlightsToggle<cr>
-nmap <leader>gL :GitGutterLineNrHighlightsToggle<cr>
-
 "Git vim-fugitive
 nmap <leader>gp :Git pull<cr>
 nmap <leader>gs :Git status<cr>
@@ -208,7 +208,7 @@ nmap <leader>gc :Git commit<cr>
 nmap <leader>gP :Git push<cr>
 
 " Fugitive Conflict Resolution
-nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gd :Gvdiff!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
