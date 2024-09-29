@@ -16,6 +16,7 @@ hide_edge_borders both
 for_window [class="^.*"] border pixel 3
 gaps inner 10
 gaps outer 5
+focus_on_window_activation focus
 
 #Mod4 - Win
 #Mod1 - Alt
@@ -234,7 +235,7 @@ client.urgent #CE4045 #CE4045 #FFFFFF #DCCD69
 bar {
 ##    output HDMI-0
     status_command bumblebee-status \
-                 -m memory xrandr pasink pasource indicator layout datetime \
+                 -m cpu sensors disk memory xrandr pasink pasource indicator layout datetime \
 		 -p \
 		    time.format="%H:%M" \
                     nic.exclude='crc,crc-nic,lo,virbr,docker,vboxnet,veth,br,.*:avahi' \
@@ -275,7 +276,7 @@ bindsym XF86HomePage exec qutebrowser
 bindsym $mod+Next exec amixer -q set Master 5%- unmute
 bindsym $mod+Prior exec amixer -q set Master 5%+ unmute
 bindsym $mod+M exec amixer -q set Master toggle
-bindsym $mod+P exec mpc -h 1234@localhost toggle
+bindsym $mod+P exec arandr
 
 bindsym $mod+Q exec qtcreator
 
@@ -365,7 +366,7 @@ for_window [class="Com.cisco.anyconnect.gui"] floating enable
 #dia
 for_window [window_role="toolbox_window"] floating enable
 #skype
-#for_window [class="Skype"] floating enable, border none, sticky enable
+# for_window [class="Skype"] floating enable, border none, sticky enable
 for_window [class="Skype"] floating enable, border none
 
 #spark
@@ -397,25 +398,26 @@ for_window [class="Code"] border 1pixel, workspace 4
 
 #exec --no-startup-id "autocutsel -fork -selection CLIPBOARD"
 #exec --no-startup-id "autocutsel -fork -selection PRIMARY"
-exec --no-startup-id "feh --bg-fill -rqz ~/Pictures/desktop/"
+exec --no-startup-id "xset r rate 150 50 -b"
+exec --no-startup-id "blueman-applet"
+exec --no-startup-id "blueman-tray"
+exec --no-startup-id "xautolock -time 30 -locker '/usr/bin/i3lock-fancy'"
 exec --no-startup-id "devmon --no-gui"
-exec --no-startup-id "xset r rate 180 50 -b"
-exec --no-startup-id "mail-notification"
+# exec --no-startup-id "mail-notification"
 #exec --no-startup-id "nagstamon"
 exec --no-startup-id "nextcloud"
 #exec --no-startup-id "gajim"
 #exec --no-startup-id "tickr"
 #exec --no-startup-id "seafile"
 #exec --no-startup-id "xautolock -time 10 -locker 'i3lockr -b 30 -i ~/Pictures/desktop/GL-Zoom-BKRD_bookshelf_6.jpg'"
-exec --no-startup-id "xautolock -time 30 -locker '/usr/bin/i3lock-fancy'"
 #exec --no-startup-id "exec --no-startup-id dockd --daemon"
-exec --no-startup-id "blueman-tray"
 #exec --no-startup-id "exec xcompmgr"
 #exec --no-startup-id "compton"
-exec --no-startup-id "telegram-desktop"
+# exec --no-startup-id "telegram-desktop"
 exec --no-startup-id "nm-applet"
-exec --no-startup-id "skypeforlinux"
-#exec --no-startup-id "cbatticon"
-exec --no-startup-id "battray"
-exec --no-startup-id "enpass"
-exec --no-startup-id "gnome-todo"
+# exec --no-startup-id "skypeforlinux"
+exec --no-startup-id "cbatticon"
+# exec --no-startup-id "enpass"
+# exec --no-startup-id "gnome-todo"
+exec --no-startup-id "Discord"
+exec --no-startup-id "feh --bg-fill -rqz ~/Pictures/desktop/"
