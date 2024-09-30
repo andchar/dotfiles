@@ -1,0 +1,437 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'b
+	/home/andrii/bin/
+	..
+1648913492
+'g
+	/home/andrii/GL/Projects/Verizon
+	gitlab
+1648914463
+'h
+	/home/andrii/
+	..
+1648913492
+'i
+	/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture
+	infrastructure
+1648914496
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/infrastructure
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	kafka
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	configuration
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/configuration
+	values.yaml
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	configuration
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/configuration
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	spark
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/spark
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	.gitkeep
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	infrastructure
+4
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/infrastructure
+	.terraform
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/infrastructure/.terraform
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/infrastructure
+	terraform.tfstate.old
+12
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	zookeeper
+4
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	zookeeper
+4
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	kafka
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/kafka
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	common
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	kafka
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/kafka
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	-p
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/-p
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	-p
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/-p
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	common
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/common
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	kafka
+2
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/kafka
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	helm
+3
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab
+	reporting-tool
+5
+d/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool
+	.gitlab-ci.yml
+6
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture
+	infrastructure
+5
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture/infrastructure
+	env-develop
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture/infrastructure/env-develop
+	..
+0
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture/infrastructure
+	env-develop
+1
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture/infrastructure/env-develop
+	main.tf
+7
+d/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture/cicd/VPN
+	vars.tf
+11
+d/home/andrii
+	.fehbg
+41
+d/tmp/terraform-aws-eks
+	.git
+1
+d/tmp/terraform-aws-eks/.git
+	..
+0
+d/tmp/terraform-aws-eks
+	.github
+2
+d/tmp/terraform-aws-eks/.github
+	..
+0
+d/tmp/terraform-aws-eks
+	.github
+2
+d/tmp/terraform-aws-eks/.github
+	..
+0
+d/tmp/terraform-aws-eks
+	docs
+3
+d/tmp/terraform-aws-eks/docs
+	..
+0
+d/tmp/terraform-aws-eks
+	docs
+3
+d/tmp/terraform-aws-eks/docs
+	..
+0
+d/tmp/terraform-aws-eks
+	examples
+4
+d/tmp/terraform-aws-eks/examples
+	user_data
+6
+d/tmp/terraform-aws-eks/examples/user_data
+	..
+0
+d/tmp/terraform-aws-eks/examples
+	self_managed_node_group
+5
+d/tmp/terraform-aws-eks/examples/self_managed_node_group
+	..
+0
+d/tmp/terraform-aws-eks/examples
+	self_managed_node_group
+5
+d/tmp/terraform-aws-eks
+	modules
+5
+d/tmp/terraform-aws-eks/modules
+	eks-managed-node-group
+2
+d/tmp/terraform-aws-eks/modules/eks-managed-node-group
+	outputs.tf
+3
+d/tmp/terraform-aws-eks/modules
+	fargate-profile
+3
+d/tmp/terraform-aws-eks/modules/fargate-profile
+	..
+0
+d/tmp/terraform-aws-eks/modules
+	self-managed-node-group
+4
+d/tmp/terraform-aws-eks/modules/self-managed-node-group
+	..
+0
+d/tmp/terraform-aws-eks/modules
+	_user_data
+1
+d/tmp/terraform-aws-eks/modules/_user_data
+	..
+0
+d/tmp/terraform-aws-eks/modules
+	_user_data
+1
+d/tmp/terraform-aws-eks
+	examples
+4
+d/tmp/terraform-aws-eks/examples
+	self_managed_node_group
+5
+d/tmp/terraform-aws-eks
+	modules
+5
+d/tmp/terraform-aws-eks/modules
+	_user_data
+1
+d/tmp/terraform-aws-eks
+	templates
+6
+d/tmp/terraform-aws-eks/templates
+	..
+0
+d/tmp/terraform-aws-eks
+	examples
+4
+d/tmp/terraform-aws-eks/examples
+	karpenter
+4
+d/tmp/terraform-aws-eks/examples/karpenter
+	..
+0
+d/tmp/terraform-aws-eks/examples
+	complete
+1
+d/tmp/terraform-aws-eks/examples/complete
+	..
+0
+d/tmp/terraform-aws-eks/examples
+	complete
+1
+d/tmp/terraform-aws-eks
+	modules
+5
+d/tmp/terraform-aws-eks/modules
+	_user_data
+1
+d/tmp/terraform-aws-eks
+	templates
+6
+d/tmp/terraform-aws-eks/templates
+	..
+0
+d/tmp/terraform-aws-eks
+	docs
+3
+d/tmp/terraform-aws-eks/docs
+	user_data.md
+8
+d/tmp/terraform-aws-eks
+	examples
+4
+d/tmp/terraform-aws-eks/examples
+	complete
+1
+d/tmp/terraform-aws-eks
+	docs
+3
+d/tmp/terraform-aws-eks/docs
+	user_data.md
+8
+d/tmp/terraform-aws-eks
+	examples
+4
+d/tmp/terraform-aws-eks/examples
+	complete
+1
+d/tmp/terraform-aws-eks/examples/complete
+	..
+0
+d/tmp/terraform-aws-eks/examples
+	complete
+1
+d/tmp/terraform-aws-eks/examples/complete
+	main.tf
+2
+d
+
+# Right window history (oldest to newest):
+D/home/andrii
+	..
+0
+D/tmp
+	get_helm.sh
+30
+D/home/andrii
+	..
+0
+D/home/andrii/GL/Projects/Verizon/gitlab/infrastrcture
+	infrastructure
+3
+D/home/andrii/GL/Projects/Verizon/gitlab
+	infrastrcture
+2
+D/home/andrii/GL/Projects/Verizon
+	kafka
+9
+D/home/andrii/GL/Projects/Verizon/kafka
+	charts
+1
+D/home/andrii/GL/Projects/Verizon/kafka/charts
+	bitnami
+1
+D/home/andrii/GL/Projects/Verizon/kafka/charts/bitnami
+	zookeeper
+44
+D/home/andrii/GL/Projects/Verizon/kafka/charts
+	bitnami
+1
+D/home/andrii/GL/Projects/Verizon/kafka
+	charts
+1
+D/home/andrii/GL/Projects/Verizon/kafka/charts
+	bitnami
+1
+D
+
+# Command line history (oldest to newest):
+:grep co_vendor
+:grep co_campaign_execution
+:w
+:marks
+:f
+:fin
+:find 
+:find *iccid_events.json
+:find r-aws_sns.tf
+:tree
+:mkdir kafka
+:grep thunb
+:grep oid
+:find helm_install
+:cd /tmp
+:grep map
+:grep mapRoles
+:grep kubeconfig
+:mkdir -p charts/bitnami
+:wq
+
+# Search history (oldest to newest):
+/out
+/kuber
+/tag
+/tags
+/ec2.tf
+/ec2
+/icc
+/r-aws_sns.tf
+/cli
+/ser
+/bro
+/kube
+/comm
+/zoo
+/cha
+/repo
+/main
+
+# Prompt history (oldest to newest):
+
+# Local filter history (oldest to newest):
+
+# Registers:
+""/home/andrii/.local/share/vifm/Trash/000_-p
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/home/andrii/.local/share/vifm/Trash/000_pv.yaml
+	/home/andrii/GL/Projects/Verizon/kafka/kafka_infrastructure/pv.yaml
+t/home/andrii/.local/share/vifm/Trash/000_-p
+	/home/andrii/GL/Projects/Verizon/gitlab/reporting-tool/helm/-p
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].1
+]F
+s0
