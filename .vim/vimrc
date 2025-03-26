@@ -237,6 +237,13 @@ let g:vifm_embed_cwd = 1
 "    au VimResized * :wincmd =
 "augroup END
 
+if system('uname -r') =~ "microsoft"
+  augroup Yank
+  autocmd!
+  autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+  augroup END
+endif
+
 augroup set_jenkins_groovy
 au!
 au BufNewFile,BufRead *.jenkinsfile,*.Jenkinsfile,Jenkinsfile,jenkinsfile setf groovy
