@@ -27,24 +27,26 @@ sudo udevadm control --reload
 udevadm monitor -u -s drm
 '''
 
-# Log file
-LOGFILE="/var/log/monitor-setup.log"
+# # Log file
+# LOGFILE="/var/log/monitor-setup.log"
+#
+# LEFT_MONITOR="DP2-9"
+#
+# # Detect if the second monitor is connected
+#
+# # sleep 1
+# SECOND_MONITOR=$(xrandr | grep "$LEFT_MONITOR connected")
+# echo "$(printenv ACTION)" >>$LOGFILE
+# echo "$(printenv DISPLAY)" >>$LOGFILE
+#
+# if [[ -n "$SECOND_MONITOR" ]]; then
+#   # If the second monitor is connected, enable it
+#   xrandr --output $LEFT_MONITOR --auto --primary --left-of eDP1 >>$LOGFILE 2>&1
+# else
+#   # If the second monitor is not connected, disable it
+#   xrandr --output $LEFT_MONITOR --off >>$LOGFILE 2>&1
+# fi
+#
+# echo "$(xrandr --listmonitors)" >>$LOGFILE
 
-LEFT_MONITOR="DP2-9"
-
-# Detect if the second monitor is connected
-
-# sleep 1
-SECOND_MONITOR=$(xrandr | grep "$LEFT_MONITOR connected")
-echo "$(printenv ACTION)" >> $LOGFILE
-echo "$(printenv DISPLAY)" >> $LOGFILE
-
-if [[ -n "$SECOND_MONITOR" ]]; then
-  # If the second monitor is connected, enable it
-  xrandr --output $LEFT_MONITOR --auto --primary --left-of eDP1 >> $LOGFILE 2>&1
-else
-  # If the second monitor is not connected, disable it
-  xrandr --output $LEFT_MONITOR --off >> $LOGFILE 2>&1
-fi
-
-echo "$(xrandr --listmonitors)" >> $LOGFILE
+autorandr --load horizontal-reverse --batch
