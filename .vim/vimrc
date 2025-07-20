@@ -166,7 +166,7 @@ if exists("$SSH_CONNECTION")
     " Extract the client IP address (first part of SSH_CONNECTION)
     " let client_ip = split(ssh_connection)[0]
     " if client_ip == "192.168.1.92"
-    colorscheme shine
+    colorscheme defminus
 else
     colorscheme gruvbox
 endif
