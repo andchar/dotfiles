@@ -6,7 +6,7 @@ setopt EXTENDED_GLOB        # Use extended globbing syntax.
 ### }}}
 ### env {{{
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
@@ -17,6 +17,7 @@ export GREP_COLOR='37;45'
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PAGER=less
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$HOME/.linkerd2/bin:$PATH
 
 #source ~/.autojump/etc/profile.d/autojump.zsh
 #. /opt/r15b02/activate
@@ -236,6 +237,7 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-search
 
+bindkey "\e[3~" delete-char
 ### }}}
 
 ### vi-like keys {{{
@@ -312,3 +314,16 @@ source /home/${USER}/.config/broot/launcher/bash/br
 fpath=(/usr/lib/vagrant/gems/vagrant-2.3.6/contrib/zsh $fpath)
 compinit
 # <<<<  Vagrant command completion (end)
+
+# Directories bookmars with 'z' or 'zi' commands (zoxide package)
+eval "$(zoxide init zsh)"
+
+function copy_cmd_to_clipboard() {
+  print -rn -- "$BUFFER" | xclip -selection clipboard
+  zle -M "Command copied to clipboard"
+}
+
+zle -N copy_cmd_to_clipboard
+
+# shortcut to copy the command to clipboard
+bindkey '^G' copy_cmd_to_clipboard
