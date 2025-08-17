@@ -41,8 +41,17 @@ require("lazy").setup({
 })
 
 -- Set colorscheme
-vim.opt.termguicolors = true
-vim.cmd.colorscheme("gruvbox")
+
+local term = os.getenv("TERM")
+if term == "xterm" then
+  vim.opt.termguicolors = true
+  vim.cmd.colorscheme("tokyonight-day")
+else
+  vim.cmd("colorscheme gruvbox")
+end
+-- vim.opt.termguicolors = true
+-- -- vim.cmd.colorscheme("gruvbox")
+-- vim.cmd.colorscheme("tokyonight-day")
 
 ---
 -- LSP setup
