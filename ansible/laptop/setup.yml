@@ -1,0 +1,182 @@
+---
+### setup.yaml
+- name: Configure Void Linux
+  hosts: void_laptops
+  # become: yes
+  # become_user: root
+  vars_files:
+    - vault.yml
+  vars:
+    install_packages: True
+  tasks:
+    - name: Upgrade system packages
+      xbps:
+        upgrade: true
+
+    - name: Copy package-list.txt
+      ansible.builtin.copy:
+        src: ./package-list.txt
+        dest: /tmp/package-list.txt
+        mode: '0644'
+
+    - name: Install packages
+      ansible.builtin.shell: |
+        cat /tmp/package-list.txt | xargs xbps-install -y -S
+      register: install_output
+      changed_when: "'installed' in install_output.stdout or 'updated' in install_output.stdout"
+
+    - name: Ensure group "{{ user_name }}" exists
+      ansible.builtin.group:
+        name: "{{ user_name }}"
+        state: present
+
+    - name: Ensure group "docker" exists
+      ansible.builtin.group:
+        name: docker
+        state: present
+
+    - name: Add the user "{{ user_name }}"
+      user:
+        name: "{{ user_name }}"
+        group: "{{ user_name }}"
+        groups: "{{ user_name }}, network, users, wheel, docker, audio"
+        password: "{{ user_password | password_hash('sha512') }}"
+        update_password: on_create
+        shell: /usr/bin/zsh
+        append: yes
+
+
+    - name: Create /etc/sudoers.d/wheel file
+      file:
+        path: /etc/sudoers.d/wheel
+        state: touch
+        mode: '0440'
+
+    - name: Add wheel group to sudoers
+      lineinfile:
+        path: /etc/sudoers.d/wheel
+        state: present
+        line: '%wheel ALL=(ALL:ALL) ALL'
+
+#    - name: Add user to sudoers
+#      lineinfile:
+#        path: /etc/sudoers
+#        state: present
+#        regexp: "^{{ user_name }}"
+#        line: "{{ user_name }} ALL=(ALL) NOPASSWD:ALL"
+#        validate: 'visudo -cf %s'
+
+    - name: clone dotfiles
+      ansible.builtin.git:
+        repo: https://github.com/andchar/dotfiles.git
+        dest: ~/dotfiles
+        update: true
+
+    - name: Copy .Xdefaults
+      ansible.builtin.copy:
+        src: ~/dotfiles/.Xdefaults
+        dest: "~{{ user_name }}/.Xdefaults"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy .xinitrc
+      ansible.builtin.copy:
+        src: ~/dotfiles/.xinitrc
+        dest: "~{{ user_name }}/.xinitrc"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy .vifm
+      ansible.builtin.copy:
+        src: ~/dotfiles/.vifm
+        dest: "~{{ user_name }}/"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy .urxvt
+      ansible.builtin.copy:
+        src: ~/dotfiles/.urxvt
+        dest: "~{{ user_name }}/"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy .vim
+      ansible.builtin.copy:
+        src: ~/dotfiles/.vim
+        dest: "~{{ user_name }}/"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy .zsh_completion
+      ansible.builtin.copy:
+        src: ~/dotfiles/.zsh_completion
+        dest: "~{{ user_name }}/"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy zsh-syntax-highlighting
+      ansible.builtin.copy:
+        src: ~/dotfiles/usr/share/zsh-syntax-highlighting
+        dest: "/usr/share/"
+        owner: "root"
+        group: "root"
+        mode: '0644'
+    - name: Copy .zshrc
+      ansible.builtin.copy:
+        src: ~/dotfiles/.zshrc
+        dest: "~{{ user_name }}/"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+    - name: Copy .config folder
+      ansible.builtin.copy:
+        src: ~/dotfiles/.config
+        dest: "~{{ user_name }}/"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+
+    - name: Install broot config
+      ansible.builtin.command: "broot --install"
+      become: yes
+      become_user: "{{ user_name }}"
+      args:
+        creates: "/home/{{ user_name }}/.config/broot/launcher/bash/br"
+
+    - name: Start service slim
+      ansible.builtin.service:
+        name: slim
+        state: started
+        enabled: true
+
+    - name: Start service ntpd
+      ansible.builtin.service:
+        name: ntpd
+        state: started
+        enabled: true
+
+    - name: Start service dbus
+      ansible.builtin.service:
+        name: dbus
+        state: started
+        enabled: true
+
+    - name: Start service alsa
+      ansible.builtin.service:
+        name: alsa
+        state: started
+        enabled: true
+
+    - name: Start service bluetoothd
+      ansible.builtin.service:
+        name: bluetoothd
+        state: started
+        enabled: true
+
+    - name: Start service docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+# ToDo:

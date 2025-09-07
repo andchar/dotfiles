@@ -1,0 +1,5 @@
+[void_laptops]
+#laptop  ansible_user=void connection=local
+#laptop ansible_host=192.168.68.105 ansible_user=void
+laptop ansible_host=192.168.68.105 ansible_user=root
+#laptop ansible_host=10.0.0.3 ansible_user=void
