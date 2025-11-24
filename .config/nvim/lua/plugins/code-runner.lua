@@ -12,23 +12,18 @@ return {
 					python = {
 						-- Can be a table or a function that
 						-- returns a table (see below)
-						-- command = { "python3" },
-						command = { "ipython", "--no-autoindent" },
-						format = require("iron.fts.common").bracketed_paste_python,
+						command = { "python" },
 					},
 				},
 				-- How the repl window will be displayed
 				-- See below for more information
 				repl_open_cmd = require("iron.view").right(60),
-				-- repl_open_cmd = require("iron.view").bottom(40),
 			},
 			-- Iron doesn't set keymaps by default anymore.
 			-- You can set them here or manually add keymaps to the functions in iron.core
-			-- send_file = "<space>rf",
 			keymaps = {
 				send_motion = "<space>rc",
 				visual_send = "<space>rc",
-				-- send_file = "<f9>",
 				send_file = "<space>rf",
 				send_line = "<space>rl",
 				send_mark = "<space>rm",
