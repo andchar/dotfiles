@@ -22,13 +22,32 @@ enter_instance() {
 create_instance() {
   TYPE="$1" # container or vm
 
-  IMAGE=$(incus image list images: --format=json | jq -r '.[].aliases[0].name' | rofi -dmenu -p "Image")
+  ARCH=$(incus query /1.0 | jq -r '.environment.architectures[0]')
+
+  IMAGE_NAME=$(
+    incus image list images: --format=json |
+    jq -r --arg ARCH "$ARCH" --arg TYPE "$TYPE" '
+      .[]
+      | select(.type == $TYPE)
+      | select(.architecture == $ARCH)
+      | select(.aliases != null)
+      | . as $img
+      | $img.properties.description + (" [" + $img.properties.variant + "]") + (" [" + $img.fingerprint[0:12] + "]")
+    ' |
+    sort -u |
+    rofi -dmenu -p "Image"
+  )
+
+  IMAGE=$(sed -n 's/.*\[\([a-f0-9]\{12\}\)\]$/\1/p' <<< "$IMAGE_NAME")
+
+  echo "$IMAGE"
+
   [ -z "$IMAGE" ] && exit 0
 
   NAME=$(rofi -dmenu -p "Instance name")
   [ -z "$NAME" ] && exit 0
 
-  if [ "$TYPE" = "vm" ]; then
+  if [ "$TYPE" = "virtual-machine" ]; then
     incus launch "images:$IMAGE" "$NAME" --vm
   else
     incus launch "images:$IMAGE" "$NAME"
@@ -53,7 +72,7 @@ case "$MODE" in
     fi
 
     if [[ "$CHOICE" == "── Create new VM" ]]; then
-      create_instance vm
+      create_instance virtual-machine
       exit 0
     fi
 
