@@ -64,13 +64,13 @@ output "GWD ARZOPA 0x53340206" {
 }
 
 # SCEPTRE Left
-output "DP-8" {
+output "DP-5" {
     pos 0 0
     res 1920x1080@74.973Hz
 }
 
 # SCEPTRE Right
-output "DP-7" {
+output "DP-6" {
     pos 1920 0
     res 1920x1080@74.973Hz
 }
@@ -120,6 +120,9 @@ input "1267:13053:ELAN06FA:00_04F3:32FD_Touchpad" {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Configure displays
+    bindsym $mod+p exec wdisplays
 
     # Create LX Container
     bindsym $mod+Shift+v exec ~/dotfiles/scripts/rofi/rofi-incus.sh menu
@@ -260,9 +263,17 @@ bindsym $mod+r mode "resize"
 ### MY
 
 #PrintScreen (selection)
-bindsym --release Print exec "flameshot gui"
+# sudo dnf install grim slurp wl-clipboard satty
+
+# bindsym --release Print exec "flameshot gui"
+# Take region screenshot & annotate with Satty
+# bindsym --release Print exec grim -g "$(slurp)" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/screenshots/screenshot-$(date +%F_%T).png
+bindsym --release Print exec grim -g "$(slurp)" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/screenshots/screenshot-$(date +%F_%T).png
+# bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
+
 #Alt+PrintSceen(Sys_req)
-bindsym --release mod1+Sys_Req exec "flameshot full -c -p ~/Pictures/"
+# bindsym --release mod1+Sys_Req exec "flameshot full -c -p ~/Pictures/"
+# bindsym --release mod1+Print exec grim -g "$(slurp)" ~/Pictures/screenshots/
 # Disable all outputs except focused
 bindsym $mod+Shift+f exec ~/.config/sway/scripts/focus_only.sh
 # File Explorer $mod+e - ALREADY USED
