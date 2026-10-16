@@ -18,6 +18,8 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 export PAGER=less
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$HOME/.linkerd2/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH="$PATH:/opt/mssql-tools/bin"
 
 #source ~/.autojump/etc/profile.d/autojump.zsh
 #. /opt/r15b02/activate
@@ -28,8 +30,11 @@ export PATH=$HOME/.linkerd2/bin:$PATH
 
 alias m='mvim'
 #alias ls="ls -G"
-alias l='ls -1A'         # Lists in one column, hidden files.
-alias ll='ls -lh'        # Lists human readable sizes.
+#alias l='ls -1A'         # Lists in one column, hidden files.
+#alias ll='ls -lh'        # Lists human readable sizes.
+alias ls='eza'         # Lists in one column, hidden files.
+alias l='eza -1A'         # Lists in one column, hidden files.
+alias ll='eza -lh --icons --git'        # Lists human readable sizes.
 alias lr='ll -R'         # Lists human readable sizes, recursively.
 alias la='ll -A'         # Lists human readable sizes, hidden files.
 alias lm='la | "$PAGER"' # Lists human readable sizes, hidden files through pager.
@@ -39,6 +44,12 @@ alias lt='ll -tr'        # Lists sorted by date, most recent last.
 alias lc='lt -c'         # Lists sorted by date, most recent last, shows change time.
 alias lu='lt -u'         # Lists sorted by date, most recent last, shows access time.
 alias sl='ls'            # I often screw this up.
+alias tree='eza --icons --tree'
+
+alias cat='bat'
+
+alias vim='nvim'
+
 #alias poweroff='sudo poweroff'            # I often screw this up.
 #alias reboot='sudo reboot'            # I often screw this up.
 alias o='open'
@@ -327,3 +338,15 @@ zle -N copy_cmd_to_clipboard
 
 # shortcut to copy the command to clipboard
 bindkey '^G' copy_cmd_to_clipboard
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/acharnosh/.lmstudio/bin"
+
+# opencode
+export PATH=/home/acharnosh/.opencode/bin:$PATH
+
+[[ -s "/home/acharnosh/.gvm/scripts/gvm" ]] && source "/home/acharnosh/.gvm/scripts/gvm"

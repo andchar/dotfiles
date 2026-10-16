@@ -64,13 +64,13 @@ output "GWD ARZOPA 0x53340206" {
 }
 
 # SCEPTRE Left
-output "DP-5" {
+output "DP-6" {
     pos 0 0
     res 1920x1080@74.973Hz
 }
 
 # SCEPTRE Right
-output "DP-6" {
+output "DP-5" {
     pos 1920 0
     res 1920x1080@74.973Hz
 }
@@ -82,9 +82,9 @@ output "DP-6" {
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 1800 'swaylock -f -c 000000 -i /home/acharnosh/Pictures/Desktop/new-york-city-4k-wallpapers.jpg' \
-         timeout 3600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000 -i /home/acharnosh/Pictures/Desktop/new-york-city-4k-wallpapers.jpg'
+         timeout 3600 'swaylock -f -c 000000 -i /home/acharnosh/Pictures/Desktop/new-york-city-5k-wallpapers.jpg' \
+         timeout 7200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000 -i /home/acharnosh/Pictures/Desktop/new-york-city-5k-wallpapers.jpg'
 # exec swayidle -w \
 #          timeout 60 'swaylock -f -c 000000' \
 #          timeout 80 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -261,6 +261,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ### MY
+
+# opencode (AI)
+bindsym --release $mod+Shift+o exec $term ~/.opencode/bin/opencode
 
 #PrintScreen (selection)
 # sudo dnf install grim slurp wl-clipboard satty

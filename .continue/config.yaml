@@ -1,0 +1,155 @@
+name: Local DevOps AI
+version: 1.0.0
+schema: v1
+
+models:
+
+  # ==========================================================
+  # YOGA PRO 9 - RTX 4050 6GB
+  # Fast inline completion
+  # ==========================================================
+
+  - name: Yoga - Qwen2.5-Coder 1.5B
+    provider: ollama
+    model: qwen2.5-coder:1.5b-base
+    apiBase: http://localhost:11434
+    roles:
+      - autocomplete
+    defaultCompletionOptions:
+      temperature: 0.1
+      contextLength: 2048
+      maxTokens: 128
+    autocompleteOptions:
+      debounceDelay: 300
+      maxPromptTokens: 1024
+      onlyMyCode: true
+      useCache: true
+      useImports: true
+      useRecentlyEdited: true
+      useRecentlyOpened: true
+
+  # ==========================================================
+  # YOGA PRO 9 - RTX 4050 6GB
+  # Interactive coding
+  # ==========================================================
+
+  - name: Yoga - Qwen2.5-Coder 7B
+    provider: ollama
+    model: qwen2.5-coder:7b
+    apiBase: http://localhost:11434
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      temperature: 0.2
+      contextLength: 8192
+      maxTokens: 4096
+      keepAlive: 1800
+
+  # ==========================================================
+  # GMKTek - Intel Arc 140T / 96GB RAM
+  #
+  # PRIMARY AGENT / PLAN MODEL
+  # ==========================================================
+  - name: GMKTek - Qwen3.6 35B
+    provider: ollama # or lmstudio/vllm
+    model: qwen3.6:35b-a3b
+    apiBase: http://ollama.lan:11434
+    
+    # Important for Continue Agent / Plan
+    capabilities:
+      - tool_use
+    
+    requestOptions:
+      extraBodyProperties:
+        think: false # Critical for preventing tool-call truncation
+
+    roles:
+      - chat
+
+    chatOptions:
+      baseAgentSystemMessage: |
+        You are a senior DevOps engineer working directly with the user's
+        repository.
+
+        Use the available file and search tools to inspect the repository
+        before answering questions about project code.
+
+        Do not guess about files, variables, tasks, or configuration.
+        When reviewing code, identify the exact file and task whenever possible.
+
+        For Ansible:
+        - Check idempotency.
+        - Check registered-variable handling.
+        - Check Jinja2 expressions.
+        - Check Windows-specific module behavior.
+        - Check error handling and failed_when/changed_when.
+        - Check loops, conditions, and variable scope.
+        - Prefer existing project patterns over inventing new ones.
+
+        When asked to review code without modifying it, only inspect and
+        explain the findings.
+
+      basePlanSystemMessage: |
+        You are reviewing a DevOps repository in read-only planning mode.
+
+        Explore the repository using the available tools before forming
+        conclusions.
+
+        Do not modify files.
+
+        For Ansible reviews, inspect the relevant role, tasks, handlers,
+        defaults, vars, templates, and supporting files as necessary.
+
+        Distinguish definite bugs from potential problems.
+
+        Always identify:
+        1. File path
+        2. Task or relevant code
+        3. Problem
+        4. Why it matters
+        5. Suggested correction
+
+    defaultCompletionOptions:
+      temperature: 0.2
+      contextLength: 16384
+      maxTokens: 4096
+      keepAlive: 1800
+      reasoning: true
+
+  # ==========================================================
+  # GMKTek - Intel Arc 140T / 96GB RAM
+  # Coding specialist
+  # ==========================================================
+
+  - name: GMKTek - Qwen2.5-Coder 14B
+    provider: ollama
+    model: qwen2.5-coder:14b
+    apiBase: http://ollama.lan:11434
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      temperature: 0.2
+      contextLength: 16384
+      maxTokens: 4096
+      keepAlive: 1800
+
+  # ==========================================================
+  # GMKTek - lightweight model
+  # ==========================================================
+
+  - name: GMKTek - Qwen3.5 9B
+    provider: ollama
+    model: qwen3.5:9b
+    apiBase: http://ollama.lan:11434
+    roles:
+      - chat
+      - edit
+    defaultCompletionOptions:
+      temperature: 0.3
+      contextLength: 8192
+      maxTokens: 4096
+      keepAlive: 1800

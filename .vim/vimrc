@@ -1,7 +1,8 @@
 " Andrii Charnosh configuration
 
 " Basics {{{
-set clipboard=autoselectplus,autoselect,unnamedplus,unnamed
+"set clipboard=autoselectplus,autoselect,unnamedplus,unnamed
+set clipboard=unnamed,unnamedplus
 set nocompatible		" VIM використовувати всю силу vim-a
 filetype plugin indent on	" Розпізнавати типи фалів
 
@@ -166,7 +167,7 @@ if exists("$SSH_CONNECTION")
     " Extract the client IP address (first part of SSH_CONNECTION)
     " let client_ip = split(ssh_connection)[0]
     " if client_ip == "192.168.1.92"
-    colorscheme defminus
+    colorscheme shine
 else
     colorscheme gruvbox
 endif
